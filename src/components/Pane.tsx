@@ -116,6 +116,7 @@ export default function Pane({ pane, fontSize, messages, onLangChange, selectedL
           return (
             <div 
               key={msg.id} 
+              data-timestamp={msg.timestamp}
               className={`group flex items-start justify-between p-3 rounded-lg transition-colors ${
                 isLatest ? 'bg-blue-50/80 dark:bg-blue-900/40' : 'hover:bg-slate-50 dark:hover:bg-slate-700/50'
               }`}

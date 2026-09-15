@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react';
 import type { PaneState, LayoutMode, Message, SplitDirection } from '../types';
 import Pane from './Pane';
 
@@ -27,6 +28,30 @@ export default function TranslatorGrid({
   isListening
 }: TranslatorGridProps) {
   
+  // 모든 분할 창의 동일한 메시지(timestamp 기준) 높이를 똑같이 맞춤
+  useLayoutEffect(() => {
+    const timestamps = new Set(messages.map(m => m.timestamp));
+    
+    timestamps.forEach(ts => {
+      const els = document.querySelectorAll(`[data-timestamp="${ts}"]`);
+      if (els.length > 0) {
+        // 자연스러운 높이를 구하기 위해 먼저 minHeight 초기화
+        els.forEach(el => (el as HTMLElement).style.minHeight = '0px');
+        
+        let maxHeight = 0;
+        els.forEach(el => {
+          const height = el.getBoundingClientRect().height;
+          if (height > maxHeight) maxHeight = height;
+        });
+        
+        // 구해진 최대 높이로 모든 분할창의 해당 메시지 높이를 통일
+        els.forEach(el => {
+          (el as HTMLElement).style.minHeight = `${maxHeight}px`;
+        });
+      }
+    });
+  }, [messages, layoutMode, fontSize, splitDirection]);
+
   // Define grid layout based on split direction and layout mode
   let gridClass = '';
   
