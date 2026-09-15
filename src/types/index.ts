@@ -26,6 +26,7 @@ export const SUPPORTED_LANGUAGES = [
   { code: 'fr', locale: 'fr-FR', name: '프랑스어 / Français' },
   { code: 'de', locale: 'de-DE', name: '독일어 / Deutsch' },
   { code: 'vi', locale: 'vi-VN', name: '베트남어 / Tiếng Việt' },
+  { code: 'id', locale: 'id-ID', name: '인도네시아어 / Bahasa Indonesia' },
   { code: 'my', locale: 'my-MM', name: '미얀마어 / မြန်မာစာ' },
   { code: 'bn', locale: 'bn-BD', name: '벵골어(방글라데시) / বাংলা' },
   { code: 'kk', locale: 'kk-KZ', name: '카자흐어 / Қазақ тілі' },
