@@ -117,10 +117,14 @@ export default function Pane({ pane, fontSize, messages, onLangChange, selectedL
             <div 
               key={msg.id} 
               className={`group flex items-start justify-between p-3 rounded-lg transition-colors ${
-                isLatest ? 'bg-blue-50 dark:bg-blue-900/30' : 'hover:bg-slate-50 dark:hover:bg-slate-700/50'
+                isLatest ? 'bg-blue-50/80 dark:bg-blue-900/40' : 'hover:bg-slate-50 dark:hover:bg-slate-700/50'
               }`}
             >
-              <div className="flex-1 text-slate-800 dark:text-slate-200 whitespace-pre-wrap break-words">
+              <div className={`flex-1 whitespace-pre-wrap break-words tracking-wide ${
+                isLatest 
+                  ? 'text-slate-900 dark:text-white font-semibold' 
+                  : 'text-slate-700 dark:text-slate-300 font-medium'
+              }`}>
                 {isEditing ? (
                   <textarea
                     autoFocus
@@ -141,7 +145,7 @@ export default function Pane({ pane, fontSize, messages, onLangChange, selectedL
                         el.style.height = (el.scrollHeight) + 'px';
                       }
                     }}
-                    className="w-full bg-white dark:bg-slate-700 border border-blue-400 rounded px-2 py-1 outline-none focus:ring-2 focus:ring-blue-500 resize-none overflow-hidden leading-snug"
+                    className="w-full bg-white dark:bg-slate-700 border border-blue-400 rounded px-2 py-1 outline-none focus:ring-2 focus:ring-blue-500 resize-none overflow-hidden leading-relaxed font-medium"
                     rows={1}
                   />
                 ) : (
@@ -153,7 +157,7 @@ export default function Pane({ pane, fontSize, messages, onLangChange, selectedL
                         setEditText(msg.translatedText);
                       }
                     }}
-                    className={isInputPane ? "cursor-text hover:bg-black/5 dark:hover:bg-white/5 rounded px-1 -ml-1 transition-colors block leading-snug" : "leading-snug"}
+                    className={isInputPane ? "cursor-text hover:bg-black/5 dark:hover:bg-white/5 rounded px-1 -ml-1 transition-colors block leading-relaxed" : "leading-relaxed"}
                     title={isInputPane ? "클릭하여 수정하기" : ""}
                   >
                     {msg.translatedText}
@@ -176,8 +180,8 @@ export default function Pane({ pane, fontSize, messages, onLangChange, selectedL
 
         {/* Interim Text (Only for Input Pane) */}
         {isInputPane && interimText && (
-          <div className="p-3 bg-slate-100 dark:bg-slate-700/50 rounded-lg animate-pulse">
-            <p className="text-slate-500 dark:text-slate-400 italic font-medium">
+          <div className="p-3 bg-slate-100 dark:bg-slate-700/50 rounded-lg animate-pulse mt-2">
+            <p className="text-slate-600 dark:text-slate-300 italic font-medium leading-relaxed tracking-wide">
               {interimText}
             </p>
           </div>
