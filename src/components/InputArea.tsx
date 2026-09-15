@@ -203,28 +203,27 @@ export default function InputArea({
 
     // Get unique target languages to avoid duplicate API calls
     const targetLangs = Array.from(new Set(panesRef.current.map(p => p.targetLang)));
+    // 입력 언어(sourceLang)를 가장 먼저 처리하여 UI 깜빡임을 방지
+    targetLangs.sort((a, b) => a === sourceLang ? -1 : b === sourceLang ? 1 : 0);
     
-    // API 과부하(Rate limit) 방지를 위해 병렬(Promise.all) 대신 순차적으로 요청
-    const results = [];
+    const timestamp = Date.now();
     for (const targetLang of targetLangs) {
       const translatedText = await translateText(inputText, sourceLang, targetLang);
-      results.push({ targetLang, translatedText });
-      // 구글 API 차단을 막기 위해 아주 짧은 딜레이 추가 (100ms)
-      await new Promise(resolve => setTimeout(resolve, 100));
-    }
-
-    // Create messages and send them up
-    const timestamp = Date.now();
-    results.forEach(({ targetLang, translatedText }) => {
+      
       onNewMessage({
-        id: crypto.randomUUID(), // Using standard crypto API instead of uuid package to save time
+        id: crypto.randomUUID(),
         originalText: inputText,
         translatedText,
         sourceLang,
         targetLang,
         timestamp
       });
-    });
+      
+      // 구글 API 차단을 막기 위해 타겟 언어인 경우에만 짧은 딜레이(100ms) 적용
+      if (sourceLang !== targetLang) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+    }
   };
 
   const handleSubmit = async (e: FormEvent) => {
