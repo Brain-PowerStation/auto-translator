@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50 antialiased;
+  }
+  
+  option:disabled {
+    @apply text-slate-300 bg-slate-50 dark:text-slate-600 dark:bg-slate-900 italic;
+  }
+}
+
+@layer utilities {
+  @keyframes eq {
+    0%, 100% { transform: scaleY(0.3); }
+    50% { transform: scaleY(1); }
+  }
+  
+  .animate-eq1 { animation: eq 0.7s ease-in-out infinite; transform-origin: center; }
+  .animate-eq2 { animation: eq 0.5s ease-in-out infinite; transform-origin: center; }
+  .animate-eq3 { animation: eq 0.8s ease-in-out infinite; transform-origin: center; }
+}
