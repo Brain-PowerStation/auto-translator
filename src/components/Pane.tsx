@@ -50,6 +50,22 @@ export default function Pane({ pane, fontSize, messages, onLangChange, selectedL
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = lang;
+      
+      // 기기에 내장된 딱딱한 기계음 대신, 자연스러운 고품질 클라우드 음성(Google 등) 우선 탐색
+      const voices = window.speechSynthesis.getVoices();
+      
+      // 1순위: Google 클라우드 음성 (가장 자연스러움, 크롬 브라우저)
+      // 2순위: Microsoft Online (엣지 브라우저 등 자연스러운 온라인 음성)
+      // 3순위: 기기에 내장된 해당 언어의 기본 음성
+      const bestVoice = 
+        voices.find(v => v.lang.startsWith(lang) && v.name.includes('Google')) ||
+        voices.find(v => v.lang.startsWith(lang) && v.name.includes('Online')) ||
+        voices.find(v => v.lang.startsWith(lang));
+
+      if (bestVoice) {
+        utterance.voice = bestVoice;
+      }
+      
       window.speechSynthesis.speak(utterance);
     }
   };
