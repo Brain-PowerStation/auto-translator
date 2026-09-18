@@ -244,14 +244,14 @@ export default function InputArea({
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 p-4 border-t border-slate-200 dark:border-slate-700 z-10 shadow-[0_-4px_6px_-1px_rgb(0,0,0,0.05)]">
-      <form onSubmit={handleSubmit} className="flex items-center space-x-4 max-w-7xl mx-auto">
+    <div className="bg-white dark:bg-slate-800 p-4 border-t border-slate-200 dark:border-slate-700 z-10 shadow-[0_-4px_6px_-1px_rgb(0,0,0,0.05)] flex items-center justify-between w-full">
+      <form onSubmit={handleSubmit} className="flex items-center space-x-4 flex-1 pr-6">
         
         {/* Source Language Selector */}
         <select
           value={sourceLang}
           onChange={(e) => onSourceLangChange(e.target.value)}
-          className="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 px-3 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 min-w-[120px] font-medium"
+          className="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 px-3 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 min-w-[120px] font-medium shrink-0"
         >
           {SUPPORTED_LANGUAGES.map(lang => (
             <option key={lang.code} value={lang.code}>{lang.name}</option>
@@ -271,7 +271,7 @@ export default function InputArea({
         <button
           type="submit"
           disabled={!text.trim()}
-          className="p-4 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 dark:disabled:bg-slate-700 text-white rounded-full transition-colors flex items-center justify-center"
+          className="p-4 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 dark:disabled:bg-slate-700 text-white rounded-full transition-colors flex items-center justify-center shrink-0"
         >
           <Send className="w-5 h-5" />
         </button>
@@ -280,7 +280,7 @@ export default function InputArea({
         <button
           type="button"
           onClick={toggleListening}
-          className={`relative w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${
+          className={`relative w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-md shrink-0 ${
             isListening 
               ? 'bg-[#00a1f1] scale-110 shadow-[0_0_20px_rgba(0,161,241,0.6)]' 
               : 'bg-slate-800 hover:bg-slate-700 dark:bg-slate-700 dark:hover:bg-slate-600'
@@ -298,6 +298,24 @@ export default function InputArea({
           )}
         </button>
       </form>
+
+      {/* 우측 하단 두뇌발전소 개선 요청 피드백 섹션 */}
+      <a 
+        href="https://open.kakao.com/o/sOXYSmN" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="flex flex-col items-center justify-center shrink-0 hover:opacity-80 transition-all cursor-pointer group border-l border-slate-200 dark:border-slate-700 pl-6"
+        title="두뇌발전소에 사이트 개선 요청하기"
+      >
+        <span className="text-[11px] text-slate-500 dark:text-slate-400 mb-1.5 font-bold tracking-tight group-hover:text-blue-500">
+          💡 기능 개선 요청
+        </span>
+        <img 
+          src="/logo.png" 
+          alt="두뇌발전소" 
+          className="h-9 object-contain rounded shadow-sm group-hover:shadow-md transition-shadow" 
+        />
+      </a>
     </div>
   );
 }
