@@ -308,7 +308,7 @@ export default function InputArea({
         title="두뇌발전소에 사이트 개선 요청하기"
       >
         <span className="text-sm text-slate-600 dark:text-slate-300 font-bold tracking-tight group-hover:text-blue-500 whitespace-nowrap">
-          💡 기능 개선 요청
+          💡 기능 개선 요청하기 👉
         </span>
         <img 
           src="/logo.png" 
