@@ -307,10 +307,10 @@ export default function InputArea({
         className="flex items-center space-x-4 shrink-0 hover:opacity-80 transition-all cursor-pointer group border-l border-slate-200 dark:border-slate-700 pl-6"
         title="두뇌발전소에 사이트 개선 요청하기"
       >
-        <span className="text-sm text-slate-400 dark:text-slate-500 font-medium tracking-tight group-hover:text-blue-500 whitespace-nowrap flex items-center transition-colors">
-          <span className="text-lg opacity-60 mr-1.5">💡</span> 
+        <span className="text-sm text-slate-400 dark:text-slate-500 font-bold tracking-tight group-hover:text-blue-500 whitespace-nowrap flex items-center transition-colors">
+          <span className="text-xl opacity-60 mr-1.5">💡</span> 
           기능 개선 요청하기 
-          <span className="text-2xl ml-1.5 group-hover:translate-x-1 transition-transform opacity-100">👉</span>
+          <span className="text-2xl ml-1.5 opacity-60 group-hover:translate-x-1 transition-all group-hover:opacity-100">👉</span>
         </span>
         <img 
           src="/logo.png" 
