@@ -245,7 +245,7 @@ export default function InputArea({
 
   return (
     <div className="bg-white dark:bg-slate-800 p-4 border-t border-slate-200 dark:border-slate-700 z-10 shadow-[0_-4px_6px_-1px_rgb(0,0,0,0.05)] flex items-center justify-between w-full">
-      <form onSubmit={handleSubmit} className="flex items-center space-x-4 flex-1 pr-6">
+      <form onSubmit={handleSubmit} className="flex items-center space-x-4 w-[60%] shrink-0 pr-6">
         
         {/* Source Language Selector */}
         <select
@@ -304,16 +304,16 @@ export default function InputArea({
         href="https://open.kakao.com/o/sOXYSmN" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="flex flex-col items-center justify-center shrink-0 hover:opacity-80 transition-all cursor-pointer group border-l border-slate-200 dark:border-slate-700 pl-6"
+        className="flex items-center space-x-4 shrink-0 hover:opacity-80 transition-all cursor-pointer group border-l border-slate-200 dark:border-slate-700 pl-6"
         title="두뇌발전소에 사이트 개선 요청하기"
       >
-        <span className="text-[11px] text-slate-500 dark:text-slate-400 mb-1.5 font-bold tracking-tight group-hover:text-blue-500">
+        <span className="text-sm text-slate-600 dark:text-slate-300 font-bold tracking-tight group-hover:text-blue-500 whitespace-nowrap">
           💡 기능 개선 요청
         </span>
         <img 
           src="/logo.png" 
           alt="두뇌발전소" 
-          className="h-9 object-contain rounded shadow-sm group-hover:shadow-md transition-shadow" 
+          className="h-12 object-contain rounded shadow-sm group-hover:shadow-md transition-shadow" 
         />
       </a>
     </div>
