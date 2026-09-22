@@ -34,5 +34,6 @@ export const SUPPORTED_LANGUAGES = [
   { code: 'zh-CN', locale: 'zh-CN', name: '중국어 / 中文 (简体)' },
   { code: 'kk', locale: 'kk-KZ', name: '카자흐어 / Қазақ тілі' },
   { code: 'ky', locale: 'ky-KG', name: '키르기스어 / Кыргызча' },
+  { code: 'th', locale: 'th-TH', name: '태국어 / ไทย' },
   { code: 'fr', locale: 'fr-FR', name: '프랑스어 / Français' },
 ];
