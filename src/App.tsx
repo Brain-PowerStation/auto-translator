@@ -9,12 +9,27 @@ function App() {
   const [splitDirection, setSplitDirection] = useState<SplitDirection>('vertical');
   const [fontSize, setFontSize] = useState<number>(18);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
-  const [panes, setPanes] = useState<PaneState[]>([
-    { id: '1', targetLang: 'ko' },
-    { id: '2', targetLang: 'mn' },
-    { id: '3', targetLang: 'my' },
-    { id: '4', targetLang: '' },
-  ]);
+  const [panes, setPanes] = useState<PaneState[]>(() => {
+    const saved = localStorage.getItem('translator_panes');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        // parsing error fallback
+      }
+    }
+    return [
+      { id: '1', targetLang: 'ko' },
+      { id: '2', targetLang: 'mn' },
+      { id: '3', targetLang: 'my' },
+      { id: '4', targetLang: '' },
+    ];
+  });
+
+  // 언어 설정이 바뀔 때마다 브라우저에 저장
+  useEffect(() => {
+    localStorage.setItem('translator_panes', JSON.stringify(panes));
+  }, [panes]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [sourceLang, setSourceLang] = useState<string>('ko');
   const [interimText, setInterimText] = useState<string>('');
