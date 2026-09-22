@@ -89,7 +89,7 @@ export default function Pane({ pane, fontSize, messages, onLangChange, selectedL
           className={`bg-transparent font-semibold focus:outline-none cursor-pointer ${!pane.targetLang ? 'text-slate-400 dark:text-slate-500' : 'text-slate-700 dark:text-slate-200'}`}
           onClick={(e) => e.stopPropagation()}
         >
-          <option value="" disabled hidden>언어를 선택해주세요</option>
+          <option value="" disabled hidden>번역될 언어를 선택해주세요</option>
           {SUPPORTED_LANGUAGES.map(lang => {
             const isDisabled = selectedLangs.includes(lang.code) && lang.code !== pane.targetLang;
             return (
@@ -128,7 +128,7 @@ export default function Pane({ pane, fontSize, messages, onLangChange, selectedL
       >
         {!pane.targetLang && (
           <div className="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 font-medium">
-            언어를 선택해주세요
+            번역될 언어를 선택해주세요
           </div>
         )}
         
