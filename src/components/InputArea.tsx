@@ -202,7 +202,7 @@ export default function InputArea({
     }
 
     // Get unique target languages to avoid duplicate API calls
-    const targetLangs = Array.from(new Set(panesRef.current.map(p => p.targetLang)));
+    const targetLangs = Array.from(new Set(panesRef.current.map(p => p.targetLang))).filter(Boolean);
     const timestamp = Date.now();
     
     // 1. 입력 언어(sourceLang)는 번역이 필요 없으므로 0초 만에 가장 먼저 즉시 렌더링

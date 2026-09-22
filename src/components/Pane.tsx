@@ -86,9 +86,10 @@ export default function Pane({ pane, fontSize, messages, onLangChange, selectedL
         <select 
           value={pane.targetLang}
           onChange={(e) => onLangChange(e.target.value)}
-          className="bg-transparent font-semibold text-slate-700 dark:text-slate-200 focus:outline-none cursor-pointer"
+          className={`bg-transparent font-semibold focus:outline-none cursor-pointer ${!pane.targetLang ? 'text-slate-400 dark:text-slate-500' : 'text-slate-700 dark:text-slate-200'}`}
           onClick={(e) => e.stopPropagation()}
         >
+          <option value="" disabled hidden>언어를 선택해주세요</option>
           {SUPPORTED_LANGUAGES.map(lang => {
             const isDisabled = selectedLangs.includes(lang.code) && lang.code !== pane.targetLang;
             return (
@@ -122,9 +123,15 @@ export default function Pane({ pane, fontSize, messages, onLangChange, selectedL
 
       {/* Pane Content */}
       <div 
-        className="flex-1 overflow-y-auto p-4 space-y-4"
+        className="flex-1 overflow-y-auto p-4 space-y-4 relative"
         style={{ fontSize: `${fontSize}px` }}
       >
+        {!pane.targetLang && (
+          <div className="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 font-medium">
+            언어를 선택해주세요
+          </div>
+        )}
+        
         {messages.map((msg, idx) => {
           const isLatest = idx === messages.length - 1;
           const isEditing = editingId === msg.id;

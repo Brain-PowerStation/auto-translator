@@ -11,9 +11,9 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [panes, setPanes] = useState<PaneState[]>([
     { id: '1', targetLang: 'ko' },
-    { id: '2', targetLang: 'en' },
-    { id: '3', targetLang: 'ja' },
-    { id: '4', targetLang: 'ru' },
+    { id: '2', targetLang: 'mn' },
+    { id: '3', targetLang: 'my' },
+    { id: '4', targetLang: '' },
   ]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [sourceLang, setSourceLang] = useState<string>('ko');
